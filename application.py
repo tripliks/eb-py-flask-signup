@@ -78,9 +78,9 @@ def store_in_dynamo(signup_data):
 
 def publish_to_sns(signup_data):
     try:
-        sns_conn.publish(application.config['NEW_SIGNUP_TOPIC'], json.dumps(signup_data), "New signup: %s" % signup_data['email'])
+        sns_conn.publish(application.config['NEW_SIGNUP_TOPIC'], json.dumps(signup_data), "New signup: {0!s}".format(signup_data['email']))
     except Exception as ex:
-        sys.stderr.write("Error publishing subscription message to SNS: %s" % ex.message)
+        sys.stderr.write("Error publishing subscription message to SNS: {0!s}".format(ex.message))
 
 
 if __name__ == '__main__':
